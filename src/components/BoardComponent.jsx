@@ -18,9 +18,14 @@ const BoardComponent = (props) => {
           </div>
         ))}
       </div>
+      <div className="notations">
+        <div className="alive"> </div> Alive
+        <div className="dead"></div> Dead
+      </div>
       <button
+        className="Board-tick"
         onClick={() => {
-          props.handleClick();
+          props.handleTick();
         }}>
         Tick
       </button>

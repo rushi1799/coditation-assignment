@@ -26,10 +26,11 @@ function App() {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleClick = () => {
+  const handleTick = () => {
     prev.tick();
     setGrid(prev.grid);
     setPrevGrid(prev);
+    setSearchResult();
   };
 
   const seed = () => {
@@ -59,24 +60,44 @@ function App() {
   };
   const handleInsert = (e) => {
     e.preventDefault();
-
-    prev.setCell(input.name, Number(input.rowno), Number(input.colno));
-    setInput((st) => ({
-      ...st,
-      name: "",
-      rowno: 0,
-      colno: 0,
-    }));
-    setGrid(prev);
-
-    setGrid((st) => [...prev.grid]);
+    let flag = false;
+    for (let i = 0; i < input.rows; i++) {
+      for (let j = 0; j < input.cols; j++) {
+        if (
+          prev.grid[i][j].name.toLocaleLowerCase() ===
+          input.name.toLocaleLowerCase()
+        ) {
+          flag = true;
+          alert("name already exist");
+          break;
+        }
+      }
+      if (flag) {
+        break;
+      }
+    }
+    if (!flag) {
+      prev.setCell(input.name, Number(input.rowno), Number(input.colno));
+      setInput((st) => ({
+        ...st,
+        name: "",
+        rowno: 0,
+        colno: 0,
+      }));
+      setGrid(prev);
+      setGrid((st) => [...prev.grid]);
+      setSearchResult();
+    }
   };
   const handleSearch = (e) => {
     e.preventDefault();
     let flag = false;
     for (let i = 0; i < input.rows; i++) {
       for (let j = 0; j < input.cols; j++) {
-        if (prev.grid[i][j].name === search) {
+        if (
+          prev.grid[i][j].name.toLocaleLowerCase() ===
+          search.toLocaleLowerCase()
+        ) {
           flag = true;
           prev.setNeighbors(i, j);
           setSearchResult((st) => prev.grid[i][j]);
@@ -98,29 +119,28 @@ function App() {
     <div className="App">
       <h1>Coditation Assignment</h1>
       <div className="Root">
-        <div>
-          {open ? (
-            <StartOptions
-              seed={seed}
-              input={input}
-              handleChange={handleChange}
-              setBoard={setBoard}
-            />
-          ) : (
-            <HandlingOptions
-              input={input}
-              search={search}
-              searchResult={searchResult}
-              setSearch={setSearch}
-              handleChange={handleChange}
-              handleSearch={handleSearch}
-              handleInsert={handleInsert}
-              setOpen={setOpen}
-            />
-          )}
-        </div>
+        {open ? (
+          <StartOptions
+            seed={seed}
+            input={input}
+            handleChange={handleChange}
+            setBoard={setBoard}
+          />
+        ) : (
+          <HandlingOptions
+            input={input}
+            search={search}
+            searchResult={searchResult}
+            setSearch={setSearch}
+            handleChange={handleChange}
+            handleSearch={handleSearch}
+            handleInsert={handleInsert}
+            setOpen={setOpen}
+          />
+        )}
+
         {!open && (
-          <BoardComponent grid={grid ? grid : []} handleClick={handleClick} />
+          <BoardComponent grid={grid ? grid : []} handleTick={handleTick} />
         )}
       </div>
     </div>

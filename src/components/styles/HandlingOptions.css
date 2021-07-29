@@ -1,0 +1,133 @@
+.HandlingOptions {
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+.insert-cell-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.insert-cell-form input {
+  width: 120px;
+}
+.form-control {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.insert-cell-form span {
+  display: block;
+  margin: 10px 0;
+  font-weight: 600;
+}
+.insert-cell-form button {
+  width: 100px;
+  height: 30px;
+
+  margin-top: 10px;
+  color: #fff;
+  background: #3369ff;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-transform: capitalize;
+}
+
+.search-cell-form button {
+  width: 100px;
+  height: 30px;
+  margin: 10px 0 20px 5px;
+  color: #fff;
+  background: #3369ff;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-transform: capitalize;
+}
+
+.search-cell-form span {
+  display: block;
+  margin: 10px 0 0 0;
+  font-weight: 600;
+}
+.search-cell-form {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-cell-form input {
+  height: 25px;
+}
+
+#close {
+  height: 30px;
+
+  color: #fff;
+  background: #ff3355;
+  font-weight: 400;
+  font-family: "Roboto", sans-serif;
+  border-radius: 0.2em;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-transform: capitalize;
+}
+
+.search-results {
+  align-self: flex-start;
+  text-align: left;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.search-results > p > span {
+  font-weight: bold;
+}
+.search-results p {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+ul {
+  padding: 0;
+}
+li {
+  font-size: 12px;
+}
+
+.alive {
+  height: 20px;
+  width: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  margin-left: 50px;
+  margin-right: 20px;
+}
+.dead {
+  height: 20px;
+  width: 20px;
+  margin-left: 50px;
+  margin-right: 20px;
+  background-color: #ccc;
+  display: inline-block;
+}
+.notations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}

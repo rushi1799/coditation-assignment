@@ -11,12 +11,13 @@ class Board {
     }
     for (let i = 0; i < this.x; i++) {
       for (let j = 0; j < this.y; j++) {
-        this.grid[i][j] = new Cell(`${i}${j}`, i, j);
+        this.grid[i][j] = new Cell(`${i}-${j}`, i, j);
       }
     }
   }
   setCell(name, x, y) {
-    this.grid[x][y].name = name;
+    name = name.trim();
+    this.grid[x][y].name = name.length > 0 ? name : `${x}-${y}`;
     this.grid[x][y].isAlive = true;
   }
 
@@ -56,14 +57,14 @@ class Board {
           } else if (this.grid[i][j].aliveNeighbor > 3) {
             newBoard.grid[i][j].isAlive = false;
           } else if (
-            this.grid[i][j].aliveNeighbor == 2 ||
-            this.grid[i][j].aliveNeighbor == 3
+            this.grid[i][j].aliveNeighbor === 2 ||
+            this.grid[i][j].aliveNeighbor === 3
           ) {
             newBoard.grid[i][j].isAlive = true;
             newBoard.grid[i][j].name = this.grid[i][j].name;
           }
         } else {
-          if (this.grid[i][j].aliveNeighbor == 3) {
+          if (this.grid[i][j].aliveNeighbor === 3) {
             newBoard.grid[i][j].isAlive = true;
           }
         }

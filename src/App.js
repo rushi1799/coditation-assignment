@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { Board } from "./Board";
 import BoardComponent from "./BoardComponent";
+import { arr, rows, cols } from "./seedData";
 
 function App() {
   let b;
@@ -28,6 +29,17 @@ function App() {
     setPrevGrid(prev);
   };
 
+  const seed = () => {
+    b = new Board(rows, cols);
+    b.setGrid();
+    arr.map((i) => {
+      let temp = i.split("-");
+      b.setCell("", temp[0], temp[1]);
+    });
+    setPrevGrid(b);
+    setGrid(b.grid);
+  };
+
   return (
     <div className="App">
       <h1>Coditation Assignment</h1>
@@ -39,15 +51,12 @@ function App() {
           alignItems: "center",
         }}>
         <div>
-          <button>Seed data</button>
+          <button onClick={seed}>Seed data</button>
           <form
             onSubmit={(e) => {
               e.preventDefault();
               b = new Board(input.rows, input.cols);
               b.setGrid();
-              b.setCell("a", 5, 9);
-              b.setCell("b", 6, 9);
-              b.setCell("c", 4, 9);
               setPrevGrid(b);
               setGrid(b.grid);
             }}>

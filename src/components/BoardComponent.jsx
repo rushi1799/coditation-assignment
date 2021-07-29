@@ -1,27 +1,19 @@
 import React from "react";
-
+import "./styles/BoardComponent.css";
 const BoardComponent = (props) => {
   const { grid } = props;
   return (
     <div>
-      <div
-        style={{
-          width: 500,
-          height: 500,
-          boxSizing: "border-box",
-          display: "flex",
-          flexDirection: "column",
-        }}>
+      <div className="Board">
         {grid.map((row, idx) => (
-          <div key={idx} style={{ display: "flex", width: "100%", flex: 1 }}>
+          <div key={idx} className="Board-row">
             {row.map((col) => (
               <div
                 key={col.name}
                 style={{
-                  flex: 1,
                   background: col.isAlive ? "rgba(0,0,0,0.5)" : "#ccc",
-                  border: "1px solid black",
-                }}></div>
+                }}
+                className="Board-cell"></div>
             ))}
           </div>
         ))}

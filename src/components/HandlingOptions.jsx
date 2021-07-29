@@ -10,6 +10,7 @@ const HandlingOptions = (props) => {
     handleInsert,
     handleSearch,
     handleChange,
+    setOpen,
   } = props;
   return (
     <div>
@@ -57,6 +58,7 @@ const HandlingOptions = (props) => {
           <p>Alive Neighbors : {searchResult.aliveNeighbor}</p>
         </div>
       )}
+      <button onClick={() => setOpen((st) => !st)}>Close</button>
     </div>
   );
 };

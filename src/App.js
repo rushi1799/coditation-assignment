@@ -4,7 +4,7 @@ import { Board } from "./Board";
 import BoardComponent from "./components/BoardComponent";
 import HandlingOptions from "./components/HandlingOptions";
 import StartOptions from "./components/StartOptions";
-import { arr, rows, cols } from "./seedData";
+import { arr, rows, cols, seeder } from "./seedData";
 
 function App() {
   let b;
@@ -12,6 +12,7 @@ function App() {
   const [grid, setGrid] = useState([]);
   const [search, setSearch] = useState("");
   const [searchResult, setSearchResult] = useState();
+  const [open, setOpen] = useState(true);
 
   const [input, setInput] = useState({
     rows: 10,
@@ -40,14 +41,21 @@ function App() {
     });
     setPrevGrid(b);
     setGrid(b.grid);
+    setOpen((st) => !st);
   };
 
   const setBoard = (e) => {
     e.preventDefault();
     b = new Board(input.rows, input.cols);
     b.setGrid();
+    let arr = seeder(input.rows, input.cols);
+    arr.map((i) => {
+      let temp = i.split("-");
+      b.setCell("", temp[0], temp[1]);
+    });
     setPrevGrid(b);
     setGrid(b.grid);
+    setOpen((st) => !st);
   };
   const handleInsert = (e) => {
     e.preventDefault();
@@ -91,23 +99,29 @@ function App() {
       <h1>Coditation Assignment</h1>
       <div className="Root">
         <div>
-          <StartOptions
-            seed={seed}
-            input={input}
-            handleChange={handleChange}
-            setBoard={setBoard}
-          />
-          <HandlingOptions
-            input={input}
-            search={search}
-            searchResult={searchResult}
-            setSearch={setSearch}
-            handleChange={handleChange}
-            handleSearch={handleSearch}
-            handleInsert={handleInsert}
-          />
+          {open ? (
+            <StartOptions
+              seed={seed}
+              input={input}
+              handleChange={handleChange}
+              setBoard={setBoard}
+            />
+          ) : (
+            <HandlingOptions
+              input={input}
+              search={search}
+              searchResult={searchResult}
+              setSearch={setSearch}
+              handleChange={handleChange}
+              handleSearch={handleSearch}
+              handleInsert={handleInsert}
+              setOpen={setOpen}
+            />
+          )}
         </div>
-        <BoardComponent grid={grid ? grid : []} handleClick={handleClick} />
+        {!open && (
+          <BoardComponent grid={grid ? grid : []} handleClick={handleClick} />
+        )}
       </div>
     </div>
   );

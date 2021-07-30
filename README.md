@@ -1,70 +1,108 @@
-# Getting Started with Create React App
+# Coditation Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This solution is written Javascript and UI is created using React
 
-## Available Scripts
+## Run Locally
 
-In the project directory, you can run:
+Clone the project
 
-### `npm start`
+```bash
+  git clone https://github.com/rushi1799/coditation-assignment.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Go to the project directory
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+  cd coditation-assignment
+```
 
-### `npm test`
+Install dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+  npm install
+```
 
-### `npm run build`
+Start the server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+  npm run start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Solution Details
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Cell object Properties**
+| Property name | Descripton |
+| ----------------- | ------------------------------------------------------------------ |
+| x | Grid row no. in which cell is present. |
+| y| Grid column no. in which cell is present.|
+| name| Name of cell by default it is according to cell position for cell at {1,2} name is "1-2".|
+| isAlive | Status of cell. |
+| aliveNeighbors | count of alive neighbors of cell. |
 
-### `npm run eject`
+**Board object Properties**
+| Property name | Descripton |
+| ----------------- | ------------------------------------------------------------------ |
+| x | Total number of rows. |
+| y | Total number of columns.|
+| grid |2D array contain cell object of size x\*y. |
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Methods of Board Class**
+| Method | Descripton |
+| ----------------- | ------------------------------------------------------------------ |
+| setGrid() | Initialize grid with dead cells.|
+| setCell(name, x, y) | Inserts cell to {x,y} position. |
+| setNeighbors(x, y) | Sets count of alive neighbors of cell. |
+| isOnBoard(x, y) | Checks cell positions is valid or not. |
+| tick() | Simulates gird according to rules. |
+| showGrid() | Display console output of grid state. |
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Tick function rules**
+| Rules | Descripton |
+| ----------------- | ------------------------------------------------------------------ |
+| Rule 1|Any live cell with fewer than two live neighbors dies, as if by loneliness. |
+| Rule 2|Any live cell with more than three live neighbors dies, as if by overcrowding. |
+| Rule 3|Any live cell with two or three live neighbors lives, unchanged, to the next generation. |
+| Rule 4|Any dead cell with exactly three live neighbors comes to life. |
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**Seed Grid Data**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Default seed gives grid of 40 row and 40 cols containing total 1600 cells of which random 500 cells are alive.
+- In maunal seed you can set number of row and columns.
+- In maunal seed 1/3 of cells are alive.
 
-## Learn More
+**Inserts cell to Grid**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- You can insert cell by specifying row number and column number.
+- Giving name name to cell is optional.
+  | Row number | Column Number | Default name of cell |
+  | -----------|------ | ------------------------------------------------------------------ |
+  | 1|5 | "1-5"|
+  | 5|10 |"5-10" |
+  |20 |56 | "20-56"|
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- If you are providing name then make sure it is unique in grid.
 
-### Code Splitting
+**Searching cell in Grid**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Logic of searching is written in _App.js_
+- Linear search is used.
 
-### Analyzing the Bundle Size
+## Tech Stack
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- React
+- Javascript
 
-### Making a Progressive Web App
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Incase if this project does not work on local machine. project is deployed on folowing link you can also check it
+[here](https://www.github.com/octokatherine)
 
-### Advanced Configuration
+## Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![App Screenshot](https://drive.google.com/uc?id=1or2PVOgF1g87o-Esh3YmYkr1TKGbF2Wi)
 
-### Deployment
+![App Screenshot](https://drive.google.com/uc?id=1Qzq8Xem7YnJkWmuADfglTce1wTU1eK8v)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Author
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [@rushi1799](https://github.com/rushi1799)

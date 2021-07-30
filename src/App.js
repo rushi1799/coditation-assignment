@@ -21,11 +21,12 @@ function App() {
     colno: 0,
     name: "",
   });
-
+  //handling input state
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
+  //handling tick button click
   const handleTick = () => {
     prev.tick();
     setGrid(prev.grid);
@@ -33,6 +34,7 @@ function App() {
     setSearchResult();
   };
 
+  //seed default size grid
   const seed = () => {
     b = new Board(rows, cols);
     b.setGrid();
@@ -44,7 +46,7 @@ function App() {
     setGrid(b.grid);
     setOpen((st) => !st);
   };
-
+  //seed manual size grid
   const setBoard = (e) => {
     e.preventDefault();
     b = new Board(input.rows, input.cols);
@@ -58,6 +60,8 @@ function App() {
     setGrid(b.grid);
     setOpen((st) => !st);
   };
+
+  //handling inserting cell
   const handleInsert = (e) => {
     e.preventDefault();
     let flag = false;
@@ -89,6 +93,8 @@ function App() {
       setSearchResult();
     }
   };
+
+  //handling search
   const handleSearch = (e) => {
     e.preventDefault();
     let flag = false;
@@ -110,7 +116,7 @@ function App() {
       }
     }
     if (!flag) {
-      alert("Not found May be cell died in last tick");
+      alert("Not found");
       setSearchResult();
     }
   };

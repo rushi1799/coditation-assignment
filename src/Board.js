@@ -5,6 +5,7 @@ class Board {
     this.y = y;
     this.grid = new Array(x);
   }
+  //initialize gird
   setGrid() {
     for (var i = 0; i < this.x; i++) {
       this.grid[i] = new Array(this.y);
@@ -15,12 +16,14 @@ class Board {
       }
     }
   }
+  //insert cell
   setCell(name, x, y) {
     name = name.trim();
     this.grid[x][y].name = name.length > 0 ? name : `${x}-${y}`;
     this.grid[x][y].isAlive = true;
   }
 
+  //count alive neighbors
   setNeighbors(x, y) {
     let count = 0;
     count += this.isOnBoard(x - 1, y - 1);
@@ -36,13 +39,13 @@ class Board {
 
     this.grid[x][y].aliveNeighbor = count;
   }
-
+  //check cell position is valid or not
   isOnBoard(x, y) {
     if (x < 0 || x >= this.x) return 0;
     if (y < 0 || y >= this.y) return 0;
     return this.grid[x][y].isAlive ? 1 : 0;
   }
-
+  //implementation of rules
   tick() {
     let newBoard = new Board(this.x, this.y);
     newBoard.setGrid();
@@ -50,20 +53,24 @@ class Board {
     for (let i = 0; i < this.x; i++) {
       for (let j = 0; j < this.y; j++) {
         this.setNeighbors(i, j);
+        newBoard.grid[i][j].name = this.grid[i][j].name;
 
         if (this.grid[i][j].isAlive) {
+          //rule 1
           if (this.grid[i][j].aliveNeighbor < 2) {
             newBoard.grid[i][j].isAlive = false;
-          } else if (this.grid[i][j].aliveNeighbor > 3) {
+          } //rule 2
+          else if (this.grid[i][j].aliveNeighbor > 3) {
             newBoard.grid[i][j].isAlive = false;
-          } else if (
+          } //rule 3
+          else if (
             this.grid[i][j].aliveNeighbor === 2 ||
             this.grid[i][j].aliveNeighbor === 3
           ) {
             newBoard.grid[i][j].isAlive = true;
-            newBoard.grid[i][j].name = this.grid[i][j].name;
           }
-        } else {
+        } //rule 4
+        else {
           if (this.grid[i][j].aliveNeighbor === 3) {
             newBoard.grid[i][j].isAlive = true;
           }
@@ -72,6 +79,8 @@ class Board {
     }
     this.grid = newBoard.grid;
   }
+
+  //show console output of grid
   showGrid() {
     for (let i = 0; i < this.x; i++) {
       let line = "";

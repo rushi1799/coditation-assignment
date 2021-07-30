@@ -95,7 +95,7 @@ Start the server
 ## Deployment
 
 Incase if this project does not work on local machine. project is deployed on folowing link you can also check it
-[here](https://www.github.com/octokatherine)
+[here](https://coditation-assignment.herokuapp.com/)
 
 ## Screenshots
 
